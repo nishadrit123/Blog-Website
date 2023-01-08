@@ -1,0 +1,35 @@
+
+<%- include("partials/header"); -%>
+    <h1>Home</h1>
+    <p> <%= startingContent %> </p>
+
+
+  <%  posts.forEach(function(post){ %>
+
+    <h1><%=post.title%></h1>
+    <div class="options">
+      <p>
+        <%=post.content.substring(0, 100) + " ..."%>
+        <a href="/posts/<%=post.title%>">Read More</a>
+      </p>
+      <div class="contain">
+        <form class="new_form" action="/update" method="post">
+          <button type="submit" name="update_item" value="<%=post._id%>" class="btn btn-success btn-sm">Update</button>
+        </form>
+        <form class="new_form" action="/delete" method="post">
+          <button type="submit" name="delete_item" value="<%=post._id%>" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </div>
+    </div>
+
+
+    <% }) %>
+
+    <form action="/new" method="post">
+      <div class="contain">
+        <button type="submit" class="btn btn-primary btn-lg">Add a new blog</button>
+      </div>
+    </form>
+
+
+<%- include("partials/footer"); -%>
